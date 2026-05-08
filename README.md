@@ -1,16 +1,61 @@
-# aquaholic
+# Aquaholic
 
-A new Flutter project.
+Aquaholic is a Flutter hydration reminder app that helps users stay hydrated with recurring local notifications.
 
-## Getting Started
+## What it does
 
-This project is a starting point for a Flutter application.
+- Sends water reminders on a schedule you choose.
+- Lets users enable or disable reminders.
+- Supports configurable reminder intervals from 15 minutes up to 3 hours.
+- Includes quiet hours so notifications are automatically paused during sleep or do-not-disturb windows.
+- Persists settings locally using shared preferences.
 
-A few resources to get you started if this is your first Flutter project:
+## Key features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Local notifications via `flutter_local_notifications`
+- Timezone-aware scheduling with `timezone` and `flutter_timezone`
+- Settings storage using `shared_preferences`
+- Dark-themed Material UI with interval selector and quiet hours picker
+- Multi-platform support (Android, iOS, macOS, Windows)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## How it works
+
+- The app initializes notification services and reads saved reminder settings.
+- If reminders are enabled, it schedules a rolling set of notifications at the selected interval.
+- Quiet hours are respected by skipping notifications between the configured start and end times.
+
+## Quick start
+
+1. Install Flutter dependencies:
+
+```bash
+flutter pub get
+```
+
+2. Run the app on a connected device or emulator:
+
+```bash
+flutter run
+```
+
+## App configuration
+
+The main app logic is implemented in `lib/main.dart`.
+
+- `ReminderSettings` stores whether reminders are enabled, the reminder interval, and quiet hours.
+- `_NotificationService` initializes notification permissions and schedules local reminders.
+- `_SettingsStore` saves and loads settings with `SharedPreferences`.
+
+## Dependencies
+
+- `flutter_local_notifications`
+- `flutter_local_notifications_windows`
+- `timezone`
+- `flutter_timezone`
+- `shared_preferences`
+
+## Notes
+
+- Minimum reminder interval is 15 minutes.
+- The app schedules up to 60 future notifications to keep reminders active.
+- Quiet hours wrap across midnight when needed.
