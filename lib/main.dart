@@ -36,7 +36,7 @@ class AquaholicApp extends StatelessWidget {
           background: const Color(0xFF0A0E1A),
           surfaceVariant: const Color(0xFF1E2740),
         ),
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           color: Colors.white.withOpacity(0.05),
           elevation: 0,
           shape: RoundedRectangleBorder(
